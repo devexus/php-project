@@ -11,6 +11,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+                @if (\Session::has('error'))
+                <div class="p-2 text-red-600">
+                    <ul>
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+                @endif
                 <div class="p-6 text-gray-900">
                     <div class="flex flex-col gap-5">
                         @if ($categories->isEmpty())

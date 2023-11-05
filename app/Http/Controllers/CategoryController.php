@@ -47,6 +47,16 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+
+        $count = $category->events->count();
+
+
+        if ($count > 0) {
+            return redirect()->route('categories')->with('error', 'Cannot delete the record, it has related child records.');
+        }
+
+
+
         $category->delete();
 
         return redirect()->route('categories')->with('success', 'Category deleted successfully');
